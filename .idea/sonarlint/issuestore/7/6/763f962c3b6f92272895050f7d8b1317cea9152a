@@ -1,0 +1,14 @@
+
+9
+java:S16599"#Declare "right" on a separate line.(¾Ÿé§
+9
+java:S1659G"#Declare "right" on a separate line.(¾Ÿé§
+Q	java:S125p"<This block of commented-out lines of code should be removed.(ƒ¦ÌÖ
+V	java:S125y"<This block of commented-out lines of code should be removed.(êšŸìýÿÿÿÿ
+S	java:S106{"9Replace this use of System.out or System.err by a logger.(´ë§ûÿÿÿÿ
+:
+java:S1659“"#Declare "right" on a separate line.(çùà¶
+G
+java:S1128"1Remove this unused import 'java.util.Comparator'.(î¹ó¹
+H
+java:S1128"-Remove this unused import 'org.w3c.dom.Node'.(ùŠÿËýÿÿÿÿ

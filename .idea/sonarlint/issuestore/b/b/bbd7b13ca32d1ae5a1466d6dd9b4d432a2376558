@@ -1,0 +1,10 @@
+
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ú¢Ð‚
+c
+java:S3973"HUse indentation to denote the code conditionally executed by this "for".(Õš¾ùùÿÿÿÿ
+E
+java:S1197"*Move the array designators [] to the type.(äÇ•æûÿÿÿÿ
+N	java:S106	"9Replace this use of System.out or System.err by a logger.(Ê ÆÊ
+@
+java:S1197#"*Move the array designators [] to the type.(¤‰Ç»
+N	java:S106&"9Replace this use of System.out or System.err by a logger.(Ñù·¶

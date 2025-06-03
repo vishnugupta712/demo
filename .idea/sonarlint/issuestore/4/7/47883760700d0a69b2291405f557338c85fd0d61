@@ -1,0 +1,8 @@
+
+t
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(―έ‘€όÿÿÿÿ
+o
+java:S1488%"YImmediately return this expression instead of assigning it to the temporary variable "x".(η©½ν
+S	java:S106""9Replace this use of System.out or System.err by a logger.(ΤΞϋ³ωÿÿÿÿ
+S	java:S106>"9Replace this use of System.out or System.err by a logger.(ύπί±ϋÿÿÿÿ
+S	java:S106A"9Replace this use of System.out or System.err by a logger.(ύπί±ϋÿÿÿÿ

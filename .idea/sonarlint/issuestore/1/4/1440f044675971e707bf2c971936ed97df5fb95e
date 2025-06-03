@@ -1,0 +1,13 @@
+
+R
+java:S49736"<Strings and Boxed types should be compared using "equals()".(Ù—Ë‘
+c
+java:S3824"HReplace this "Map.containsKey()" with a call to "Map.computeIfAbsent()".(ëœşÿÿÿÿ
+g
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(ÆíQ
+?
+java:S1197"*Move the array designators [] to the type.(ÆíQ
+E
+java:S1197@"*Move the array designators [] to the type.(¡±é¾úÿÿÿÿ
+S	java:S106F"9Replace this use of System.out or System.err by a logger.(é©Ñ¥úÿÿÿÿ
+S	java:S106H"9Replace this use of System.out or System.err by a logger.(°§ÄÎúÿÿÿÿ

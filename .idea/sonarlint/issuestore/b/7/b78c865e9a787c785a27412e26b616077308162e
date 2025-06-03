@@ -1,0 +1,17 @@
+
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ß”“÷ýÿÿÿÿ
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²·Ïåúÿÿÿÿ
+k	java:S1176"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„®Õæýÿÿÿÿ
+U
+java:S1854"@Remove this useless assignment to local variable "last_removed".(è­Ás
+E
+java:S1197;"*Move the array designators [] to the type.(¡þÏÖøÿÿÿÿ
+N	java:S106H"9Replace this use of System.out or System.err by a logger.(ýÕöù
+Q	java:S125<"<This block of commented-out lines of code should be removed.(¿ÑŠ¶
+N	java:S106K"9Replace this use of System.out or System.err by a logger.(ÛýÄ—
+N	java:S106N"9Replace this use of System.out or System.err by a logger.(Ï¬ Ý
+S	java:S106Q"9Replace this use of System.out or System.err by a logger.(‹½Ü‚üÿÿÿÿ
+N	java:S106T"9Replace this use of System.out or System.err by a logger.(¹éí¢
+S	java:S106W"9Replace this use of System.out or System.err by a logger.(Û§®ýúÿÿÿÿ
+S	java:S106Z"9Replace this use of System.out or System.err by a logger.(‰èÚóøÿÿÿÿ
+N	java:S106]"9Replace this use of System.out or System.err by a logger.(„×¾”

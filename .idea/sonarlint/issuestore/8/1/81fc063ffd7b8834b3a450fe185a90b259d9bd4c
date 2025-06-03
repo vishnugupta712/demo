@@ -1,0 +1,25 @@
+
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜°şÇúÿÿÿÿ
+k	java:S117r"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£Å½Œûÿÿÿÿ
+f	java:S117v"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ã¶†Ú
+m	java:S116"SRename this field "slow_ptr" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š…îäøÿÿÿÿ
+m	java:S116"SRename this field "fast_ptr" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š…îäøÿÿÿÿ
+p	java:S116"VRename this field "second_half" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š…îäøÿÿÿÿ
+`
+java:S1659"EDeclare "fast_ptr" and all following declarations on a separate line.(Š…îäøÿÿÿÿ
+W
+java:S1126h"AReplace this if-then-else statement by a single return statement.(¸£Ü¾
+O	java:S106ƒ"9Replace this use of System.out or System.err by a logger.(ôÃø­
+T	java:S106†"9Replace this use of System.out or System.err by a logger.(¤ªÑÉÿÿÿÿÿ
+V
+java:S1854‘":Remove this useless assignment to local variable "string".(“ç Åøÿÿÿÿ
+F
+java:S1197"*Move the array designators [] to the type.(óÎÂìùÿÿÿÿ
+G
+java:S1481‘"+Remove this unused "string" local variable.(“ç Åøÿÿÿÿ
+>
+java:S1125•"'Remove the unnecessary boolean literal.(õ³ˆù
+O	java:S106–"9Replace this use of System.out or System.err by a logger.(öùàĞ
+T	java:S106—"9Replace this use of System.out or System.err by a logger.(ŞÒ—üÿÿÿÿ
+T	java:S106š"9Replace this use of System.out or System.err by a logger.(­“œÿÿÿÿÿ
+T	java:S106›"9Replace this use of System.out or System.err by a logger.(ŞÒ—üÿÿÿÿ

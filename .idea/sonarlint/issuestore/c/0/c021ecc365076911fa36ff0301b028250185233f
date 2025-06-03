@@ -1,0 +1,17 @@
+
+o
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(â˜ßõ
+1
+java:S36268"Remove this redundant jump.(ûÁİ…
+@
+java:S1197"*Move the array designators [] to the type.(„Ô¦Â
+N	java:S1060"9Replace this use of System.out or System.err by a logger.(¿Øô®
+N	java:S1064"9Replace this use of System.out or System.err by a logger.(Äˆæ
+P
+java:S24795":Remove the non-escaped \u0009 character from this literal.(Ä€¶
+E
+java:S1197;"*Move the array designators [] to the type.(º ìıÿÿÿÿ
+E
+java:S1197@"*Move the array designators [] to the type.(øé˜Ìùÿÿÿÿ
+8
+java:S1659G""Declare "sell" on a separate line.(Ù£Ã¡

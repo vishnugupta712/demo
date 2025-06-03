@@ -1,0 +1,26 @@
+
+Q	java:S125"<This block of commented-out lines of code should be removed.(Ïò‡Ü
+Q	java:S125"<This block of commented-out lines of code should be removed.(Ğòç‰
+Q	java:S125"<This block of commented-out lines of code should be removed.(ãÔ‘
+Z	java:S106?"9Replace this use of System.out or System.err by a logger.(è”¨şÿÿÿÿ8ñÎß³›2
+F
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ
+H
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ
+I
+java:S1128".Remove this unused import 'java.util.HashMap'.(™˜”€ùÿÿÿÿ
+O
+java:S1128"4Remove this unused import 'java.util.LinkedHashMap'.(ò†ŠŞùÿÿÿÿ
+F
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ
+E
+java:S1128"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ
+N
+java:S1128	"8Remove this unused import 'java.util.function.Function'.(»³Í
+S
+java:S1128
+"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ
+Y
+java:S1128"7Remove this unused import 'java.util.stream.IntStream'.(ÙÉ½Ÿùÿÿÿÿ8¬¢ß³›2
+J
+java:S1128"4Remove this unused import 'java.util.stream.Stream'.(ó÷”

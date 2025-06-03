@@ -1,0 +1,17 @@
+
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Î‘•Äüÿÿÿÿ
+f	java:S117""QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥ÈãÃ
+k	java:S117."QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢íóÔùÿÿÿÿ
+E
+java:S1197"*Move the array designators [] to the type.(Î‘•Äüÿÿÿÿ
+8
+java:S1659""Declare "temp" on a separate line.(¿™‹š
+7	java:S131
+""Add a default case to this switch.(€ÒÑØ
+@
+java:S1197""*Move the array designators [] to the type.(¥ÈãÃ
+N	java:S106&"9Replace this use of System.out or System.err by a logger.(º¼É°
+S	java:S106'"9Replace this use of System.out or System.err by a logger.(ŞÒ—üÿÿÿÿ
+E
+java:S1197-"*Move the array designators [] to the type.(ıÂÉœüÿÿÿÿ
+S	java:S1060"9Replace this use of System.out or System.err by a logger.(¡Î¯Îıÿÿÿÿ

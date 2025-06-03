@@ -1,0 +1,29 @@
+
+v
+java:S1192"[Define a constant instead of duplicating this literal "Sum found between indexes " 3 times.(ğ•É˜şÿÿÿÿ
+n	java:S1352"YReduce the total number of break and continue statements in this loop to use at most one.(»³½‹
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÏŞ×Öùÿÿÿÿ
+k	java:S117-"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŞÀêÓúÿÿÿÿ
+f	java:S117\"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ô”«Í
+E
+java:S1197"*Move the array designators [] to the type.(ßÅ©†øÿÿÿÿ
+]
+java:S1659"BDeclare "start" and all following declarations on a separate line.(ÏŞ×Öùÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(ÆÀûı
+S	java:S106'"9Replace this use of System.out or System.err by a logger.(‚Ëš²ùÿÿÿÿ
+S	java:S106H"9Replace this use of System.out or System.err by a logger.(º„ø¿ıÿÿÿÿ
+N	java:S106J"9Replace this use of System.out or System.err by a logger.(ûÏûï
+@
+java:S1197R"*Move the array designators [] to the type.(È¶İ×
+4
+java:S1659]"Declare "i" on a separate line.(›İO
+S	java:S106z"9Replace this use of System.out or System.err by a logger.(¬®ûøÿÿÿÿ
+T	java:S106ˆ"9Replace this use of System.out or System.err by a logger.(‚Ëš²ùÿÿÿÿ
+F
+java:S1197–"*Move the array designators [] to the type.(ÿ”Ã÷ÿÿÿÿÿ
+R	java:S125"<This block of commented-out lines of code should be removed.(¬«Š
+Q	java:S125’"<This block of commented-out lines of code should be removed.(‹£ u
+L
+java:S2209™"5Change this instance-reference to a static reference.(ñóò¡
+I
+java:S1128".Remove this unused import 'java.util.Scanner'.(ÒÜÅ¸úÿÿÿÿ

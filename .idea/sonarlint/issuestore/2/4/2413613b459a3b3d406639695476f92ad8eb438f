@@ -1,0 +1,17 @@
+
+{
+java:S22930"YReplace the type specification in this constructor call with the diamond operator ("<>").(ªôî›ÿÿÿÿÿ8òÖì÷µ2
+{
+java:S2293A"YReplace the type specification in this constructor call with the diamond operator ("<>").(ªôî›ÿÿÿÿÿ8öÖì÷µ2
+r
+java:S11490"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(ªôî›ÿÿÿÿÿ8žÝì÷µ2
+r
+java:S1149A"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(ªôî›ÿÿÿÿÿ8¢Ýì÷µ2
+U	java:S106"9Replace this use of System.out or System.err by a logger.(ûò–—8ÀÝì÷µ2
+]	java:S125"<This block of commented-out lines of code should be removed.(èÊÄÿÿÿÿÿ8ËÝì÷µ2
+@
+java:S1197"*Move the array designators [] to the type.(­ÎÈ˜
+G
+java:S1197."*Move the array designators [] to the type.(—Ìö8ÿÝì÷µ2
+L
+java:S1197?"*Move the array designators [] to the type.( ûŽàýÿÿÿÿ8Þì÷µ2

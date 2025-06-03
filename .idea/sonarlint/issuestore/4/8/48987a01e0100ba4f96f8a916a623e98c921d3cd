@@ -1,0 +1,21 @@
+
+>
+java:S1659"#Declare "head2" on a separate line.(ÚŠº„şÿÿÿÿ
+c	java:S100'"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤ÒÌş
+P
+java:S2209Q"5Change this instance-reference to a static reference.(ï†€Ãıÿÿÿÿ
+P
+java:S2209R"5Change this instance-reference to a static reference.(„ÈÑ×ıÿÿÿÿ
+P
+java:S2209S"5Change this instance-reference to a static reference.(¬´¼”ùÿÿÿÿ
+P
+java:S2209T"5Change this instance-reference to a static reference.(¬åëûÿÿÿÿ
+P
+java:S2209U"5Change this instance-reference to a static reference.(Ïâ¸Õøÿÿÿÿ
+P
+java:S2209X"5Change this instance-reference to a static reference.(¨¢•¬ùÿÿÿÿ
+J
+java:S2209Y"5Change this instance-reference to a static reference.(Ùí±
+P
+java:S2209Z"5Change this instance-reference to a static reference.(•Ò˜çøÿÿÿÿ
+S	java:S106\"9Replace this use of System.out or System.err by a logger.(´±¹çıÿÿÿÿ

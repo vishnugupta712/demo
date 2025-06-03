@@ -1,0 +1,21 @@
+
+@
+java:S5411"*Use the primitive boolean expression here.(•á­
+@
+java:S5411!"*Use the primitive boolean expression here.(²Ùêå
+E
+java:S54110"*Use the primitive boolean expression here.(è±™ÿÿÿÿÿ
+E
+java:S5411^"*Use the primitive boolean expression here.(Ã©ƒÇşÿÿÿÿ
+?
+java:S1197"*Move the array designators [] to the type.(âı¹~
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ôâó…úÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(È­Á¹şÿÿÿÿ
+S	java:S106#"9Replace this use of System.out or System.err by a logger.(ÙùÚûÿÿÿÿ
+N	java:S106'"9Replace this use of System.out or System.err by a logger.(õ•äÚ
+Q	java:S125B"<This block of commented-out lines of code should be removed.(‹îÿŠ
+Q	java:S125G"<This block of commented-out lines of code should be removed.(£»·×
+N	java:S106X"9Replace this use of System.out or System.err by a logger.(Ë¤¶
+S	java:S106Y"9Replace this use of System.out or System.err by a logger.(ãœ³àøÿÿÿÿ
+N	java:S106_"9Replace this use of System.out or System.err by a logger.(Ğºı¸
+N	java:S106b"9Replace this use of System.out or System.err by a logger.(•ïÄ½

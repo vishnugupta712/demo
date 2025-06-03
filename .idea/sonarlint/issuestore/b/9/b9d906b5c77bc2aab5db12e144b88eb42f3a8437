@@ -1,0 +1,8 @@
+
+o
+java:S1210"YOverride "equals(Object obj)" to comply with the contract of the "compareTo(T o)" method.(Ë®ðä
+]
+java:S1659	"BDeclare "count" and all following declarations on a separate line.(ÄÞ“üúÿÿÿÿ
+h
+java:S62043"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹
+N	java:S106C"9Replace this use of System.out or System.err by a logger.(×Æáî

@@ -1,0 +1,15 @@
+
+o
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(éãĞ‰
+E
+java:S1197"*Move the array designators [] to the type.(ûŞÙîøÿÿÿÿ
+E
+java:S1197"*Move the array designators [] to the type.(ûŞÙîøÿÿÿÿ
+E
+java:S11976"*Move the array designators [] to the type.(ĞœÒ“úÿÿÿÿ
+E
+java:S11977"*Move the array designators [] to the type.(¢˜¾„ıÿÿÿÿ
+N	java:S106:"9Replace this use of System.out or System.err by a logger.(Àš¸
+S	java:S106<"9Replace this use of System.out or System.err by a logger.(—˜ê€üÿÿÿÿ
+9
+java:S1128"$Remove this unused import 'java.io'.(¬›ãD

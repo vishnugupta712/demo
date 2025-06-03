@@ -1,0 +1,15 @@
+
+f
+java:S1149"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(²Áßþ
+b
+java:S1871"LThis branch's code block is the same as the block for the branch on line 10.(§¼Éç
+b
+java:S1871"LThis branch's code block is the same as the block for the branch on line 10.(§¼Éç
+=
+java:S1125#"'Remove the unnecessary boolean literal.(øáÇÊ
+V
+java:S1126-"AReplace this if-then-else statement by a single return statement.(˜Ÿ¡
+<
+java:S1125-"'Remove the unnecessary boolean literal.(˜Ÿ¡
+N	java:S1067"9Replace this use of System.out or System.err by a logger.(»ãøÕ
+S	java:S106:"9Replace this use of System.out or System.err by a logger.(…Ž®ÿÿÿÿÿ

@@ -1,0 +1,18 @@
+
+Z
+java:S2583"DChange this condition so that it does not always evaluate to "false"(ğ¾ˆŠ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(×š·Ëıÿÿÿÿ
+S	java:S1067"9Replace this use of System.out or System.err by a logger.(’Üõıÿÿÿÿ
+N	java:S106A"9Replace this use of System.out or System.err by a logger.(ß¸Ï
+l
+java:S3457M"Q%n should be used in place of \n to produce the platform-specific line separator.(ÁÜõøÿÿÿÿ
+@
+java:S3457M"%String contains no format specifiers.(ÁÜõøÿÿÿÿ
+S	java:S106M"9Replace this use of System.out or System.err by a logger.(ÁÜõøÿÿÿÿ
+N	java:S106T"9Replace this use of System.out or System.err by a logger.(º••°
+f
+java:S3457i"Q%n should be used in place of \n to produce the platform-specific line separator.(îòm
+M	java:S106i"9Replace this use of System.out or System.err by a logger.(îòm
+f
+java:S3457s"Q%n should be used in place of \n to produce the platform-specific line separator.(îòm
+M	java:S106s"9Replace this use of System.out or System.err by a logger.(îòm

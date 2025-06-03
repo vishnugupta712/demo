@@ -1,0 +1,18 @@
+
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë·ä
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ú‹£‚
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ùàù¨
+k	java:S117 "QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(’ññÓúÿÿÿÿ
+f	java:S117B"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®ş¿‹
+t	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(¹¢°ıÿÿÿÿ
+h
+java:S3776	"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(„í¨Í
+^
+java:S1659"HDeclare "start_index" and all following declarations on a separate line.(Ùàù¨
+M	java:S106"9Replace this use of System.out or System.err by a logger.(ÚÂƒX
+@
+java:S1197"*Move the array designators [] to the type.(ë·ä
+@
+java:S1197"*Move the array designators [] to the type.(Ú‹£‚
+M	java:S106L"9Replace this use of System.out or System.err by a logger.(ÚÂƒX
+N	java:S106]"9Replace this use of System.out or System.err by a logger.(±ÆøÅ

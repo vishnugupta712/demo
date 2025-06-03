@@ -1,0 +1,13 @@
+
+b
+java:S3008"LRename this field "R" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•Ú°ƒ
+g
+java:S3008"LRename this field "C" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§Œ’šÿÿÿÿÿ
+B
+java:S1197",Move the array designators [][] to the type.(­Üô
+S	java:S106"9Replace this use of System.out or System.err by a logger.(²¿ùÿÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(ê¤–”
+S	java:S106!"9Replace this use of System.out or System.err by a logger.(…’›îøÿÿÿÿ
+N	java:S106)"9Replace this use of System.out or System.err by a logger.(Şè´
+G
+java:S11972",Move the array designators [][] to the type.(À¼ü©øÿÿÿÿ

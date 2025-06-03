@@ -1,0 +1,17 @@
+
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œ©“ãÿÿÿÿÿ
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ã¶†Ú
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ô­ûôûÿÿÿÿ
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ô­ûôûÿÿÿÿ
+f	java:S117("QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ã¶†Ú
+k	java:S1173"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áÏìûúÿÿÿÿ
+f	java:S1178"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ã¶†Ú
+^
+java:S2259…"BA "NullPointerException" could be thrown; "prev" is nullable here.(ÄÎ³ıÿÿÿÿ
+N	java:S106""9Replace this use of System.out or System.err by a logger.(ÁûÃå
+1
+java:S3626M"Remove this redundant jump.(ûÁİ…
+7
+java:S1659q""Declare "prev" on a separate line.(±ê¦a
+O	java:S106"9Replace this use of System.out or System.err by a logger.(·„©
+O	java:S106°"9Replace this use of System.out or System.err by a logger.(ÄÃÿš
