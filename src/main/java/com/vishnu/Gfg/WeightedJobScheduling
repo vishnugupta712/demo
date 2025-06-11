@@ -1,0 +1,73 @@
+// Java program to implement 
+// Weighted Job Scheduling
+import java.util.*;
+
+class GfG {
+    // Function to find the closest next job.
+    static int findNextJob(int i, int[][] jobs) {
+        int end = jobs[i][1];
+        int ans = jobs.length;
+        int s = i + 1, e = jobs.length - 1;
+        while (s <= e) {
+            int mid = s + (e - s) / 2;
+            if (jobs[mid][0] >= end) {
+                ans = mid;
+                e = mid - 1;
+            } else {
+                s = mid + 1;
+            }
+        }
+        return ans;
+    }
+  
+  // Binary search to find latest job (before current) that doesn't conflict
+    static int latestNonConflict(int[][] jobs, int index) {
+        int low = 0, high = index - 1;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (jobs[mid][1] <= jobs[index][0]) { // end time of mid <= start time of current
+                if (mid + 1 <= high && jobs[mid + 1][1] <= jobs[index][0])
+                    low = mid + 1;
+                else
+                    return mid;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+    // Function to find the maximum profit
+    // from weighted job scheduling
+    static int maxProfit(int[][] jobs) {
+        int n = jobs.length;
+
+        // Sort jobs by end time (jobs[i][1])
+        Arrays.sort(jobs, Comparator.comparingInt(a -> a[1]));
+
+        int[] dp = new int[n];
+        dp[0] = jobs[0][2];  // profit of first job
+
+        for (int i = 1; i < n; i++) {
+            int inclProfit = jobs[i][2]; // profit if we include current job
+            int l = latestNonConflict(jobs, i);
+
+            if (l != -1)
+                inclProfit += dp[l];
+
+            dp[i] = Math.max(inclProfit, dp[i - 1]); // max of including or excluding current job
+        }
+
+        return dp[n - 1]; // answer is max profit till last job
+    }
+
+    public static void main(String[] args) {
+        int[][] jobs = {
+            {1, 3, 60}, 
+            {2, 5, 50}, 
+            {4, 6, 70}, 
+            {5, 7, 30}
+        };
+        System.out.println(maxProfit(jobs));
+    }
+}
