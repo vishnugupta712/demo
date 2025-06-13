@@ -1,0 +1,80 @@
+import java.io.*;
+import java.util.*;
+
+class GFG {
+
+    // function to find largest area rectangular
+    // submatrix with equal number of 1's and 0's
+    public static void
+    maxAreaRectWithSumZero(int matrix[][], int rows, int cols)
+    {
+        for (int i = 0; i < rows; i++) {
+          for (int j = 0; j < cols; j++) {
+              if (matrix[i][j] == 0)
+                  matrix[i][j] = -1;
+          }
+        }
+        int maxArea = 0;
+        // Fix left column
+        for (int left = 0; left < cols; left++) {
+            int[] temp = new int[rows]; // temp array for rows sum
+
+            // Fix right column
+            for (int right = left; right < cols; right++) {
+
+                // Add values of current right column to temp
+                for (int i = 0; i < rows; i++) {
+                    temp[i] += matrix[i][right];
+                }
+
+                // Now find largest zero-sum subarray in temp
+                int length = largestZeroSumSubarray(temp);
+
+                // Calculate area (width * height)
+                int area = length * (right - left + 1);
+
+                // Update maxArea
+                if (area > maxArea) {
+                    maxArea = area;
+                }
+            }
+        }
+
+        System.out.println("Area +" + maxArea);
+    }
+
+    static int largestZeroSumSubarray(int[] arr) {
+        Map<Integer, Integer> prefixSumMap = new HashMap<>();
+        int prefixSum = 0;
+        int maxLen = 0;
+
+        // Prefix sum 0 at index -1 for subarray starting at index 0
+        prefixSumMap.put(0, -1);
+
+        for (int i = 0; i < arr.length; i++) {
+            prefixSum += arr[i];
+
+            if (prefixSumMap.containsKey(prefixSum)) {
+                // subarray with zero sum found between prefixSumMap.get(prefixSum)+1 to i
+                int prevIndex = prefixSumMap.get(prefixSum);
+                int len = i - prevIndex;
+                if (len > maxLen) maxLen = len;
+            } else {
+                prefixSumMap.put(prefixSum, i);
+            }
+        }
+
+        return maxLen;
+    }
+
+    // Driver Code
+    public static void main(String[] args)
+    {
+        int mat[][] = { { 0, 0, 1, 1 },
+                        { 0, 1, 1, 0 },
+                        { 1, 1, 1, 0 },
+                        { 1, 0, 0, 1 } };
+        int row = 4, col = 4;
+        maxAreaRectWithSumZero(mat, row, col);
+    }
+}
