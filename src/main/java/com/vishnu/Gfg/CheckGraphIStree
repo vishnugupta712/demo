@@ -1,0 +1,41 @@
+static boolean isCyclic(int node, int parent, boolean[] visited, List<List<Integer>> adj) {
+    visited[node] = true;
+
+    for (int neighbor : adj.get(node)) {
+        if (!visited[neighbor]) {
+            if (isCyclic(neighbor, node, visited, adj)) {
+                return true; // cycle found
+            }
+        } else if (neighbor != parent) {
+            return true; // cycle found (not parent)
+        }
+    }
+
+    return false;
+}
+
+static boolean isTree(int n, int[][] edges) {
+    if (edges.length != n - 1) return false; // tree must have exactly n-1 edges
+
+    // Build adjacency list
+    List<List<Integer>> adj = new ArrayList<>();
+    for (int i = 0; i < n; i++) adj.add(new ArrayList<>());
+
+    for (int[] edge : edges) {
+        int u = edge[0], v = edge[1];
+        adj.get(u).add(v);
+        adj.get(v).add(u); // undirected
+    }
+
+    boolean[] visited = new boolean[n];
+
+    // If cycle found → not a tree
+    if (isCyclic(0, -1, visited, adj)) return false;
+
+    // If not all nodes are visited → not connected → not a tree
+    for (boolean v : visited) {
+        if (!v) return false;
+    }
+
+    return true; // No cycle, fully connected, n-1 edges => Tree
+}
