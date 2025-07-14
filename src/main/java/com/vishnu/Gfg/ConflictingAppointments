@@ -1,0 +1,93 @@
+import java.util.*;
+//// SIMPLE APPROACH
+class Appointment {
+    int start, end;
+
+    Appointment(int start, int end) {
+        this.start = start;
+        this.end = end;
+    }
+}
+// TC O(n^2)
+//SC O(1)
+public class ConflictingAppointments {
+
+    public static void findConflicts(Appointment[] appts) {
+        // Step 1: Sort by start time
+        Arrays.sort(appts, Comparator.comparingInt(a -> a.start));
+
+        int n = appts.length;
+        // Step 2: Compare each with all next
+        for (int i = 0; i < n; i++) {
+            Appointment current = appts[i];
+            for (int j = i + 1; j < n; j++) {
+                Appointment next = appts[j];
+
+                // If next starts before current ends → conflict
+                if (next.start < current.end) {
+                    System.out.println("[" + next.start + "," + next.end + "] Conflicts with [" + current.start + "," + current.end + "]");
+                } else {
+                    // Since sorted by start, no point in checking further
+                    break;
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Appointment[] appointments = {
+            new Appointment(1, 5),
+            new Appointment(3, 7),
+            new Appointment(2, 6),
+            new Appointment(10, 15),
+            new Appointment(5, 6),
+            new Appointment(4, 100)
+        };
+
+        findConflicts(appointments);
+    }
+}
+
+
+/////OPTIMIZED APPROACH
+//TC O(n log n)
+//SC O(1)
+import java.util.*;
+
+class Interval {
+    int start, end;
+    Interval(int s, int e) {
+        this.start = s;
+        this.end = e;
+    }
+}
+
+public class OptimizedConflicts {
+
+    public static void findConflicts(Interval[] intervals) {
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a.start));
+
+        int n = intervals.length;
+        int prevEnd = intervals[0].end;
+
+        for (int i = 1; i < n; i++) {
+            if (intervals[i].start < prevEnd) {
+                System.out.println("[" + intervals[i].start + "," + intervals[i].end + "] conflicts with earlier interval");
+            }
+            // Always keep the max end seen so far
+            prevEnd = Math.max(prevEnd, intervals[i].end);
+        }
+    }
+
+    public static void main(String[] args) {
+        Interval[] arr = {
+            new Interval(1, 5),
+            new Interval(3, 7),
+            new Interval(2, 6),
+            new Interval(10, 15),
+            new Interval(5, 6),
+            new Interval(4, 100)
+        };
+        findConflicts(arr);
+    }
+}
