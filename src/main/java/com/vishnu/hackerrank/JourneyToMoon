@@ -1,0 +1,64 @@
+class Result {
+
+    /*
+     * Complete the 'journeyToMoon' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts following parameters:
+     *  1. INTEGER n
+     *  2. 2D_INTEGER_ARRAY astronaut
+     */
+     
+     //TC O(N+P)
+     //SC O(N+P)
+
+    public static long journeyToMoon(int n, List<List<Integer>> astronaut) {
+    // Write your code here
+// Step 1: Graph banate hain
+    List<List<Integer>> graph = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        graph.add(new ArrayList<>());
+    }
+    
+    // Step 2: Same country ke astronauts ko connect karo
+    for (List<Integer> pair : astronaut) {
+        int u = pair.get(0);
+        int v = pair.get(1);
+        graph.get(u).add(v);
+        graph.get(v).add(u);
+    }
+    
+    // Step 3: DFS se connected components (countries) nikaalo
+    boolean[] visited = new boolean[n];
+    List<Integer> countrySizes = new ArrayList<>();
+    
+    for (int i = 0; i < n; i++) {
+        if (!visited[i]) {
+            int size = dfs(i, graph, visited);
+            countrySizes.add(size);
+        }
+    }
+    
+    // Step 4: Total pairs = nC2, same-country pairs = sum of sizeC2
+    long total = (long)n * (n - 1) / 2;
+    long sameCountryPairs = 0;
+    for (int size : countrySizes) {
+        sameCountryPairs += (long)size * (size - 1) / 2;
+    }
+    
+    return total - sameCountryPairs;
+}
+
+// DFS to count size of connected component
+private static int dfs(int node, List<List<Integer>> graph, boolean[] visited) {
+    visited[node] = true;
+    int size = 1;
+    for (int neighbor : graph.get(node)) {
+        if (!visited[neighbor]) {
+            size += dfs(neighbor, graph, visited);
+        }
+    }
+    return size;
+}
+
+}
