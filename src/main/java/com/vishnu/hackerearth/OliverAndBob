@@ -1,0 +1,58 @@
+class TestClass {
+    static List<List<Integer>> adj;
+    static int[] inTime, outTime;
+    static int time = 1;
+    public static void main(String args[] ) throws Exception {
+        //BufferedReader
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter out = new PrintWriter(System.out);
+        
+       adj = new ArrayList<>();
+        for (int i = 0; i <= n; i++) {
+            adj.add(new ArrayList<>());
+        }
+
+        for (int i = 0; i < n - 1; i++) {
+            int u = sc.nextInt();
+            int v = sc.nextInt();
+            adj.get(u).add(v);
+            adj.get(v).add(u);
+        }
+
+        inTime = new int[n + 1];
+        outTime = new int[n + 1];
+
+        dfs(1, -1); // Root at node 1
+
+        int q = sc.nextInt();
+        StringBuilder output = new StringBuilder();
+
+        for (int i = 0; i < q; i++) {
+            int dir = sc.nextInt();
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+
+            if (dir == 0) {
+                output.append(isAncestor(x, y) ? "YES\n" : "NO\n");
+            } else {
+                output.append(isAncestor(y, x) ? "YES\n" : "NO\n");
+            }
+        }
+
+        System.out.print(output);
+    }
+    
+    static void dfs(int node, int parent) {
+        inTime[node] = ++time;
+        for(int nei : graph.get(node)) {
+            if(nei != parent) {
+                dfs(nei, node);
+            }
+        }
+        outTime[node] = ++time;
+    }
+    
+    static boolean isAncestor(int u, int v) {
+        return inTime[u] <= inTime[v] && outTime[u] >= outTime[v];
+    }
+}
