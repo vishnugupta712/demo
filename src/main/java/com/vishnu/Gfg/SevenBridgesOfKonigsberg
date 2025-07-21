@@ -1,0 +1,72 @@
+import java.util.*;
+
+//TC O(v^2 + e) agar adjancey amtrix h
+//TC O(v + e) agar adjancey list h
+//SC O(v + e) agar adjancey list h
+//SC O(v^2) agar adjancey matrix h
+public class EulerianPath {
+    static int N;
+    static List<Integer> path = new ArrayList<>();
+
+    public static void main(String[] args) {
+        int[][] adj = {
+            {0, 1, 0, 0, 1},
+            {1, 0, 1, 1, 0},
+            {0, 1, 0, 1, 0},
+            {0, 1, 1, 0, 0},
+            {1, 0, 0, 0, 0}
+        };
+
+        N = adj.length;
+
+        int startNode = findStartNode(adj); // Step 1
+
+        if (startNode == -1) {
+            System.out.println("-1");  // No path possible
+        } else {
+            dfs(startNode, adj); // Step 2: DFS path banayein
+            Collections.reverse(path); // Step 3: Reverse path
+            for (int i = 0; i < path.size(); i++) {
+                System.out.print((path.get(i) + 1)); // +1 for 1-based output
+                if (i != path.size() - 1) System.out.print(" -> ");
+            }
+        }
+    }
+
+    // Step 1: Find start node
+    static int findStartNode(int[][] adj) {
+        int oddCount = 0;
+        int start = 0;
+
+        for (int i = 0; i < N; i++) {
+            int degree = 0;
+            for (int j = 0; j < N; j++) {
+                degree += adj[i][j];
+            }
+
+            if (degree % 2 == 1) {
+                oddCount++;
+                start = i; // Save any odd degree node as starting point
+            }
+        }
+
+        if (oddCount == 0 || oddCount == 2) {
+            return start;
+        }
+
+        return -1; // Not possible
+    }
+
+    // Step 2: DFS with bridge deletion
+    static void dfs(int u, int[][] adj) {
+        for (int v = 0; v < N; v++) {
+            if (adj[u][v] == 1) {
+                // Remove the bridge so we don't reuse it
+                adj[u][v] = 0;
+                adj[v][u] = 0;
+                dfs(v, adj);
+            }
+        }
+        path.add(u); // Backtracking adds nodes in reverse
+    }
+}
