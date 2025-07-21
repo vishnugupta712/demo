@@ -1,0 +1,83 @@
+public static int chinesePostman(int n, int[][] edges) {
+    int INF = 1000000000;
+
+    // Step 1: Initialize graph adjacency matrix with INF for shortest paths
+    int[][] dist = new int[n][n];
+    for (int i = 0; i < n; i++)
+        Arrays.fill(dist[i], INF);
+    for (int i = 0; i < n; i++)
+        dist[i][i] = 0;
+
+    int[] inDegree = new int[n];
+    int[] outDegree = new int[n];
+
+    int totalCost = 0;
+
+    // Step 2: Fill dist and degree arrays
+    for (int[] edge : edges) {
+        int u = edge[0] - 1;
+        int v = edge[1] - 1;
+        int cost = edge[2];
+
+        outDegree[u]++;
+        inDegree[v]++;
+        totalCost += cost;
+
+        // Update distance matrix for shortest paths
+        dist[u][v] = Math.min(dist[u][v], cost);
+    }
+
+    // Step 3: Floyd Warshall to find shortest paths between all pairs
+    for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (dist[i][k] + dist[k][j] < dist[i][j]) {
+                    dist[i][j] = dist[i][k] + dist[k][j];
+                }
+            }
+        }
+    }
+
+    // Step 4: Identify nodes where outDegree > inDegree and vice versa
+    List<Integer> posDiffNodes = new ArrayList<>();
+    List<Integer> negDiffNodes = new ArrayList<>();
+    List<Integer> posDiffCount = new ArrayList<>();
+    List<Integer> negDiffCount = new ArrayList<>();
+
+    for (int i = 0; i < n; i++) {
+        int diff = outDegree[i] - inDegree[i];
+        if (diff > 0) {
+            posDiffNodes.add(i);
+            posDiffCount.add(diff);
+        } else if (diff < 0) {
+            negDiffNodes.add(i);
+            negDiffCount.add(-diff);
+        }
+    }
+
+    // Step 5: Pair nodes and add minimum cost of paths to balance graph
+    int extraCost = 0;
+    for (int i = 0; i < posDiffNodes.size(); i++) {
+        int u = posDiffNodes.get(i);
+        int countU = posDiffCount.get(i);
+
+        for (int j = 0; j < negDiffNodes.size(); j++) {
+            int v = negDiffNodes.get(j);
+            int countV = negDiffCount.get(j);
+
+            int minCount = Math.min(countU, countV);
+
+            if (minCount > 0) {
+                // Add minimum cost path * minCount
+                extraCost += dist[u][v] * minCount;
+                posDiffCount.set(i, countU - minCount);
+                negDiffCount.set(j, countV - minCount);
+
+                countU -= minCount;
+                countV -= minCount;
+            }
+        }
+    }
+
+    return totalCost + extraCost;
+}
