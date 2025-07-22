@@ -1,0 +1,54 @@
+public class GraphCliques {
+
+    // Main function to check if graph can be divided into two cliques
+//TC O(n^2)
+//SC O(n^2)
+    public boolean canBeDividedIntoTwoCliques(int[][] graph, int n) {
+        int[][] complement = new int[n][n];
+
+        // Step 1: Build the complement graph
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i != j) {
+                    complement[i][j] = (graph[i][j] == 0) ? 1 : 0;
+                }
+            }
+        }
+
+        // Step 2: Check if complement is bipartite
+        return isBipartite(complement, n);
+    }
+
+    // Standard BFS check for bipartite graph
+    private boolean isBipartite(int[][] graph, int n) {
+        int[] colors = new int[n]; // 0 = unvisited, 1 = red, -1 = blue
+
+        for (int i = 0; i < n; i++) {
+            if (colors[i] == 0) {
+                if (!bfsCheck(graph, i, colors)) return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean bfsCheck(int[][] graph, int start, int[] colors) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.offer(start);
+        colors[start] = 1;
+
+        while (!queue.isEmpty()) {
+            int u = queue.poll();
+            for (int v = 0; v < graph.length; v++) {
+                if (graph[u][v] == 1) {
+                    if (colors[v] == 0) {
+                        colors[v] = -colors[u];
+                        queue.offer(v);
+                    } else if (colors[v] == colors[u]) {
+                        return false; // same color on both ends, not bipartite
+                    }
+                }
+            }
+        }
+        return true;
+    }
+}
