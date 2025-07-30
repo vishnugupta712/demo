@@ -1,0 +1,34 @@
+import java.util.Arrays;
+
+public class MaxDifferenceSubsets {
+//TC O(n log n)
+//SC O(1)
+    public static int maxDifference(int[] arr, int k) {
+        Arrays.sort(arr); // Array ko ascending order me sort karo
+        
+        int n = arr.length;
+        
+        int sumSmallestK = 0;
+        int sumLargestK = 0;
+        
+        // Sum of smallest k elements
+        for (int i = 0; i < k; i++) {
+            sumSmallestK += arr[i];
+        }
+        
+        // Sum of largest k elements
+        for (int i = n - k; i < n; i++) {
+            sumLargestK += arr[i];
+        }
+        
+        // Maximum possible difference
+        return sumLargestK - sumSmallestK;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {5, 8, -1, 4};
+        int k = 2;
+        int result = maxDifference(arr, k);
+        System.out.println("Maximum Difference = " + result);
+    }
+}
