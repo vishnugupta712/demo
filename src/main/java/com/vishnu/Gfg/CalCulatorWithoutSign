@@ -1,0 +1,91 @@
+//TC O(1)
+//SC O(1)
+public class AddWithoutPlus {
+    public static int add(int a, int b) {
+        while (b != 0) {
+            int carry = a & b;        // Carry nikal lo
+            a = a ^ b;                // Sum bina carry ke
+            b = carry << 1;           // Carry ko 1 place aage shift karo
+        }
+        return a;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Addition: " + add(7, 5));  // Output: 12
+    }
+}
+
+//TC O(1)
+//SC O(1)
+public class SubtractWithoutMinus {
+    public static int subtract(int a, int b) {
+        return AddWithoutPlus.add(a, AddWithoutPlus.add(~b, 1)); // a + (-b)
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Subtraction: " + subtract(10, 4)); // Output: 6
+    }
+}
+
+//TC O(log b)
+//SC O(1)
+public class MultiplyWithoutStar {
+    public static int multiply(int a, int b) {
+        boolean isNegative = false;
+        
+        // Handle negativity
+        if (a < 0) {
+            a = AddWithoutPlus.add(~a, 1); // Make a positive
+            isNegative = !isNegative;
+        }
+        if (b < 0) {
+            b = AddWithoutPlus.add(~b, 1); // Make b positive
+            isNegative = !isNegative;
+        }
+
+        int result = 0;
+        while (b != 0) {
+            if ((b & 1) != 0) {
+                result = AddWithoutPlus.add(result, a);
+            }
+            a <<= 1; // Double a
+            b >>= 1; // Half b
+        }
+
+        return isNegative ? AddWithoutPlus.add(~result, 1) : result;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Multiplication: " + multiply(-4, 6)); // Output: -24
+    }
+}
+
+//TC O(log a)
+//SC O(1)
+public class DivideWithoutSlash {
+    public static int divide(int dividend, int divisor) {
+        if (divisor == 0) throw new ArithmeticException("Division by zero");
+
+        boolean isNegative = (dividend < 0) ^ (divisor < 0);
+
+        int a = Math.abs(dividend);
+        int b = Math.abs(divisor);
+        int result = 0;
+
+        while (a >= b) {
+            int temp = b, multiple = 1;
+            while ((temp << 1) <= a) {
+                temp <<= 1;
+                multiple <<= 1;
+            }
+            a = AddWithoutPlus.add(a, AddWithoutPlus.add(~temp, 1)); // a = a - temp
+            result = AddWithoutPlus.add(result, multiple);
+        }
+
+        return isNegative ? AddWithoutPlus.add(~result, 1) : result;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Division: " + divide(20, -4)); // Output: -5
+    }
+}
