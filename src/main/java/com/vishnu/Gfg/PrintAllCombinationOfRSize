@@ -1,0 +1,68 @@
+import java.util.*;
+
+class GfG {
+
+    // Helper function to find all combinations
+    // of size r in an array of size n
+    static void combinationUtil(int ind, int r, List<Integer> data, 
+        List<List<Integer>> result, int[] arr) {
+        int n = arr.length;
+
+        // If size of current combination is r
+        if (data.size() == r) {
+            result.add(new ArrayList<>(data));
+            return;
+        }
+
+        // If no more elements are left to put in data
+        if (ind >= n) {
+            return;
+        }
+
+        // include the current element
+        data.add(arr[ind]);
+
+        // Recur for next elements
+        combinationUtil(ind + 1, r, data, result, arr);
+
+        // Backtrack to find other combinations
+        data.remove(data.size() - 1);
+
+        // exclude the current element and
+        // move to the next unique element
+        while (ind + 1 < n && arr[ind] == arr[ind + 1]) {
+            ind++;
+        }
+        combinationUtil(ind + 1, r, data, result, arr);
+    }
+
+    // Function to find all combinations of size r
+    // in an array of size n
+    static List<List<Integer>> findCombination(int[] arr, int r) {
+        int n = arr.length;
+
+        // to store the result
+        List<List<Integer>> result = new ArrayList<>();
+
+        // sort the array
+        Arrays.sort(arr);
+
+        // Temporary array to store current combination
+        List<Integer> data = new ArrayList<>();
+
+        combinationUtil(0, r, data, result, arr);
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 1, 2, 3, 4};
+        int r = 2;
+        List<List<Integer>> res = findCombination(arr, r);
+        for (List<Integer> comb : res) {
+            for (int num : comb) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+        }
+    }
+}
