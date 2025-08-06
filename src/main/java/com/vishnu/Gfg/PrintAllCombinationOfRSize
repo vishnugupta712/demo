@@ -2,6 +2,9 @@ import java.util.*;
 
 class GfG {
 
+
+//TC O(2^n)
+//SC O(n)
     // Helper function to find all combinations
     // of size r in an array of size n
     static void combinationUtil(int ind, int r, List<Integer> data, 
