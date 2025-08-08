@@ -1,0 +1,72 @@
+public class KnightTour {
+//TC O(8^n*n)
+//SC O(n^2)
+//YE SLOW APPROACH H KYONKI HR INVALID MOVE KO APPROACH KRTE H.
+    static int[][] knightTour(int n) {
+        int[][] board = new int[n][n];
+        
+        // Initially mark all as unvisited
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                board[i][j] = -1;
+            }
+        }
+
+        // All 8 possible moves for a Knight
+        int[] rowMoves = {2, 1, -1, -2, -2, -1, 1, 2};
+        int[] colMoves = {1, 2,  2,  1, -1, -2, -2, -1};
+
+        // Starting position
+        board[0][0] = 0;
+
+        if (solveKnight(0, 0, 1, board, rowMoves, colMoves, n)) {
+            return board; // Return the tour
+        } else {
+            System.out.println(-1); // No tour possible
+            return null;
+        }
+    }
+
+    private static boolean solveKnight(int row, int col, int step,
+                                       int[][] board, int[] rowMoves, int[] colMoves, int n) {
+        // Base case: all squares visited
+        if (step == n * n) {
+            return true;
+        }
+
+        // Try all 8 moves
+        for (int move = 0; move < 8; move++) {
+            int nextRow = row + rowMoves[move];
+            int nextCol = col + colMoves[move];
+
+            if (isValid(nextRow, nextCol, board, n)) {
+                board[nextRow][nextCol] = step; // Place step number
+                if (solveKnight(nextRow, nextCol, step + 1, board, rowMoves, colMoves, n)) {
+                    return true;
+                } else {
+                    // Backtrack
+                    board[nextRow][nextCol] = -1;
+                }
+            }
+        }
+        return false; // No move worked
+    }
+
+    private static boolean isValid(int row, int col, int[][] board, int n) {
+        return (row >= 0 && row < n && col >= 0 && col < n && board[row][col] == -1);
+    }
+
+    // For quick test
+    public static void main(String[] args) {
+        int n = 5;
+        int[][] result = knightTour(n);
+        if (result != null) {
+            for (int[] row : result) {
+                for (int val : row) {
+                    System.out.printf("%2d ", val);
+                }
+                System.out.println();
+            }
+        }
+    }
+}
