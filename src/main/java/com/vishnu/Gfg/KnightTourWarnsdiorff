@@ -1,0 +1,122 @@
+public class KnightTourWarnsdorff {
+//TC O(8^n*n)-- practically ye isse bhi km hta h due to pruning
+//SC O(n*n)
+    static int[] rowMoves = {2, 1, -1, -2, -2, -1, 1, 2};
+    static int[] colMoves = {1, 2, 2, 1, -1, -2, -2, -1};
+
+    public static int[][] knightTour(int n) {
+        int[][] board = new int[n][n];
+
+        // Initialize board with -1 (unvisited)
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                board[i][j] = -1;
+            }
+        }
+
+        // Starting point
+        board[0][0] = 0;
+
+        // Start the tour from (0,0)
+        if (solveKnight(0, 0, 1, board, n)) {
+            return board;
+        } else {
+            System.out.println(-1);
+            return null;
+        }
+    }
+
+    // Recursive solver using Warnsdorff's heuristic
+    private static boolean solveKnight(int r, int c, int step, int[][] board, int n) {
+        if (step == n * n) {
+            return true;  // All cells visited
+        }
+
+        // Find next move using Warnsdorff's heuristic
+        int nextMoveIndex = -1;
+        int minDegree = 9;  // max degree can be 8
+        int nextRow = -1, nextCol = -1;
+
+        for (int i = 0; i < 8; i++) {
+            int nr = r + rowMoves[i];
+            int nc = c + colMoves[i];
+
+            if (isValid(nr, nc, board, n)) {
+                int degree = countMoves(nr, nc, board, n);
+
+                // Pick the move with minimum degree (minimum onward moves)
+                if (degree < minDegree) {
+                    minDegree = degree;
+                    nextMoveIndex = i;
+                    nextRow = nr;
+                    nextCol = nc;
+                }
+            }
+        }
+
+        if (nextMoveIndex == -1) {
+            // No next move possible → dead end
+            return false;
+        }
+
+        // Make the move
+        board[nextRow][nextCol] = step;
+
+        if (solveKnight(nextRow, nextCol, step + 1, board, n)) {
+            return true;
+        } else {
+            // Backtrack: unmark the cell
+            board[nextRow][nextCol] = -1;
+
+            // If backtrack, try other moves besides the minDegree one (optional, for completeness)
+            for (int i = 0; i < 8; i++) {
+                if (i == nextMoveIndex) continue;  // Already tried
+
+                int nr = r + rowMoves[i];
+                int nc = c + colMoves[i];
+
+                if (isValid(nr, nc, board, n)) {
+                    board[nr][nc] = step;
+                    if (solveKnight(nr, nc, step + 1, board, n)) {
+                        return true;
+                    }
+                    board[nr][nc] = -1;  // backtrack
+                }
+            }
+
+            return false; // no move worked
+        }
+    }
+
+    // Count possible onward moves from position (r,c)
+    private static int countMoves(int r, int c, int[][] board, int n) {
+        int count = 0;
+        for (int i = 0; i < 8; i++) {
+            int nr = r + rowMoves[i];
+            int nc = c + colMoves[i];
+            if (isValid(nr, nc, board, n)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    // Check if position is valid and unvisited
+    private static boolean isValid(int r, int c, int[][] board, int n) {
+        return r >= 0 && r < n && c >= 0 && c < n && board[r][c] == -1;
+    }
+
+    // For testing
+    public static void main(String[] args) {
+        int n = 8;  // standard chessboard
+        int[][] result = knightTour(n);
+        if (result != null) {
+            for (int[] row : result) {
+                for (int val : row) {
+                    System.out.printf("%2d ", val);
+                }
+                System.out.println();
+            }
+        }
+    }
+}
