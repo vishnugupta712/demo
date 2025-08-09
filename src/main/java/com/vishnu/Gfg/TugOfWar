@@ -1,0 +1,63 @@
+import java.util.*;
+
+//TC O(2^n)
+//SC O(n)
+public class TugOfWarEasy {
+    static int minDiff = Integer.MAX_VALUE;
+    static boolean[] bestChoice;
+
+    public static void tugOfWar(int[] arr) {
+        bestChoice = new boolean[arr.length];
+        boolean[] currChoice = new boolean[arr.length];
+
+        int totalSum = 0;
+        for (int num : arr) totalSum += num;
+
+        findBest(arr, currChoice, 0, 0, 0, totalSum);
+
+        // Print results
+        System.out.print("Group 1: ");
+        for (int i = 0; i < arr.length; i++) {
+            if (bestChoice[i]) System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+
+        System.out.print("Group 2: ");
+        for (int i = 0; i < arr.length; i++) {
+            if (!bestChoice[i]) System.out.print(arr[i] + " ");
+        }
+        System.out.println("\nMin Difference = " + minDiff);
+    }
+
+    static void findBest(int[] arr, boolean[] curr, int index, int countA, int sumA, int totalSum) {
+        int n = arr.length;
+        int sizeA = n / 2;
+
+        // Base case: sab elements check ho gaye
+        if (index == n) return;
+
+        // Agar group A full ho gaya
+        if (countA == sizeA) {
+            int sumB = totalSum - sumA;
+            int diff = Math.abs(sumA - sumB);
+            if (diff < minDiff) {
+                minDiff = diff;
+                bestChoice = curr.clone();
+            }
+            return;
+        }
+
+        // 1. Index wala element Group A mein daalo
+        curr[index] = true;
+        findBest(arr, curr, index + 1, countA + 1, sumA + arr[index], totalSum);
+
+        // 2. Index wala element Group B mein daalo
+        curr[index] = false;
+        findBest(arr, curr, index + 1, countA, sumA, totalSum);
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {3, 4, 5, -3, 100, 1};
+        tugOfWar(arr);
+    }
+}
