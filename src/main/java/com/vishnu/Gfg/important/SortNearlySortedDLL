@@ -1,0 +1,49 @@
+import java.util.PriorityQueue;
+
+//TC O(n log k)
+//SC O(k)
+class Solution {
+    static Node sortAKSortedDLL(Node head, int k) {
+        if (head == null) return head;
+
+        PriorityQueue<Node> pq = new PriorityQueue<>((a, b) -> a.data - b.data);
+
+        Node newHead = null; // sorted DLL head
+        Node last = null;    // last node in sorted DLL
+
+        Node curr = head;
+
+        // Step 1: Push first k+1 nodes into heap
+        for (int i = 0; i <= k && curr != null; i++) {
+            pq.add(curr);
+            curr = curr.next;
+        }
+
+        // Step 2: Process heap
+        while (!pq.isEmpty()) {
+            Node minNode = pq.poll();
+
+            // Add minNode to sorted DLL
+            if (newHead == null) {
+                newHead = minNode;
+                newHead.prev = null;
+                last = newHead;
+            } else {
+                last.next = minNode;
+                minNode.prev = last;
+                last = minNode;
+            }
+
+            // Push next node from original DLL
+            if (curr != null) {
+                pq.add(curr);
+                curr = curr.next;
+            }
+        }
+
+        // Step 3: Set last node next to null
+        last.next = null;
+
+        return newHead;
+    }
+}
