@@ -1,0 +1,39 @@
+class Solution {
+    public static Pair<ArrayList<ArrayList<Integer>>, count> findTriplets(Node head, int x) {
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+int count = 0;
+        if (head == null) return result;
+
+        // Step 1: Find tail
+        Node tail = head;
+        while (tail.next != null) tail = tail.next;
+
+        // Step 2: Traverse first element
+        for (Node a = head; a != null && a.next != null; a = a.next) {
+            Node left = a.next;
+            Node right = tail;
+
+            // Two-pointer for remaining sum
+            while (left != null && right != null && left != right && right.next != left) {
+                int sum = a.data + left.data + right.data;
+
+                if (sum == x) {
+                    count++;
+                    ArrayList<Integer> triplet = new ArrayList<>();
+                    triplet.add(a.data);
+                    triplet.add(left.data);
+                    triplet.add(right.data);
+                    result.add(triplet);
+
+                    left = left.next;
+                    right = right.prev;
+                } else if (sum < x) {
+                    left = left.next;
+                } else {
+                    right = right.prev;
+                }
+            }
+        }
+
+        return new Pair<>(result, count);
+    }
