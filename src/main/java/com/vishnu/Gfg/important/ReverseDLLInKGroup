@@ -1,0 +1,104 @@
+// Java code to reverse a doubly linked 
+// list in groups of K size
+
+class Node {
+    int data;
+    Node next;
+    Node prev;
+
+    Node(int x) {
+        data = x;
+        next = null;
+        prev = null;
+    }
+}
+
+// Helper function to reverse K nodes iteratively
+class GfG {
+  //TC O(n)
+  //SC O(1)
+    public static Node reverseKGroup(Node head, int k) {
+        if(head == null || k == 1) return head;
+
+        Node dummy = new Node(0);
+        dummy.next = head;
+        head.prev = dummy; // DLL prev link
+        Node prevGroupEnd = dummy;
+
+        while(true){
+            Node kthNode = getKthNode(prevGroupEnd, k);
+            if(kthNode == null) break;
+
+            Node groupStart = prevGroupEnd.next;
+            Node nextGroupStart = kthNode.next;
+
+            reverseGroup(groupStart, kthNode);
+
+            // Connect previous group with current reversed group
+            prevGroupEnd.next = kthNode;
+            kthNode.prev = prevGroupEnd;
+
+            groupStart.next = nextGroupStart;
+            if(nextGroupStart != null)
+                nextGroupStart.prev = groupStart;
+
+            prevGroupEnd = groupStart; // update for next group
+        }
+
+        Node newHead = dummy.next;
+        newHead.prev = null; // dummy node is no longer part of list
+        return newHead;
+    }
+
+    private static Node getKthNode(Node curr, int k){
+        while(curr != null && k > 0){
+            curr = curr.next;
+            k--;
+        }
+        return curr;
+    }
+
+    private static void reverseGroup(Node start, Node end){
+        Node prev = null;
+        Node curr = start;
+        Node next = null;
+        Node stop = end.next; // stop when curr == stop
+        while(curr != stop){
+            next = curr.next;
+            curr.next = prev;
+            curr.prev = next; // update prev for DLL
+            prev = curr;
+            curr = next;
+        }
+    }
+
+    // Function to print the doubly linked list
+    public static void printList(Node head) {
+        Node curr = head;
+        while (curr != null) {
+            System.out.print(curr.data + " ");
+            curr = curr.next;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+      
+        // Creating a sample doubly linked list:
+        // 1 <-> 2 <-> 3 <-> 4 <-> 5 <-> 6
+        Node head = new Node(1);
+        head.next = new Node(2);
+        head.next.prev = head;
+        head.next.next = new Node(3);
+        head.next.next.prev = head.next;
+        head.next.next.next = new Node(4);
+        head.next.next.next.prev = head.next.next;
+        head.next.next.next.next = new Node(5);
+        head.next.next.next.next.prev = head.next.next.next;
+        head.next.next.next.next.next = new Node(6);
+        head.next.next.next.next.next.prev = head.next.next.next.next;
+
+        head = reverseKGroup(head, 2);
+        printList(head);
+    }
+}
