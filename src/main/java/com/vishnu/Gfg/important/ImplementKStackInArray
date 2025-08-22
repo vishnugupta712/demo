@@ -1,0 +1,66 @@
+class KStacks {
+    int[] arr;     // actual elements
+    int[] top;     // top of each stack
+    int[] next;    // next free or next element link
+    int n, k;
+    int free;      // beginning of free list
+
+    // Constructor
+    KStacks(int k, int n) {
+        this.k = k;
+        this.n = n;
+        arr = new int[n];
+        top = new int[k];
+        next = new int[n];
+
+        // Initialize all stacks as empty
+        for (int i = 0; i < k; i++)
+            top[i] = -1;
+
+        // Initialize all spaces as free list
+        free = 0;
+        for (int i = 0; i < n - 1; i++)
+            next[i] = i + 1;
+        next[n - 1] = -1; // end of free list
+    }
+
+    // Check if array is full
+    boolean isFull() {
+        return free == -1;
+    }
+
+    // Check if particular stack is empty
+    boolean isEmpty(int sn) {
+        return top[sn] == -1;
+    }
+
+    // Push x into stack number sn
+    void push(int x, int sn) {
+        if (isFull()) {
+            System.out.println("Stack Overflow");
+            return;
+        }
+
+        int i = free;           // take first free slot
+        free = next[i];         // update free
+
+        arr[i] = x;             // store the element
+        next[i] = top[sn];      // link with old top
+        top[sn] = i;            // new top = i
+    }
+
+    // Pop from stack number sn
+    int pop(int sn) {
+        if (isEmpty(sn)) {
+            System.out.println("Stack Underflow");
+            return -1;
+        }
+
+        int i = top[sn];        // index of top
+        top[sn] = next[i];      // new top
+        next[i] = free;         // add to free list
+        free = i;
+
+        return arr[i];
+    }
+}
