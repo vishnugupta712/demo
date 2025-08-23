@@ -1,0 +1,43 @@
+import java.util.*;
+//TC O(n)
+//SC O(k)
+public class Main {
+    static int SumOfKsubArray(int arr[], int n, int k) {
+        Deque<Integer> maxDeque = new LinkedList<>();
+        Deque<Integer> minDeque = new LinkedList<>();
+        int sum = 0;
+
+        for (int i = 0; i < n; i++) {
+            // Remove elements out of window from front
+            if (!maxDeque.isEmpty() && maxDeque.peekFirst() <= i - k)
+                maxDeque.pollFirst();
+            if (!minDeque.isEmpty() && minDeque.peekFirst() <= i - k)
+                minDeque.pollFirst();
+
+            // Maintain decreasing order in maxDeque
+            while (!maxDeque.isEmpty() && arr[maxDeque.peekLast()] <= arr[i])
+                maxDeque.pollLast();
+
+            // Maintain increasing order in minDeque
+            while (!minDeque.isEmpty() && arr[minDeque.peekLast()] >= arr[i])
+                minDeque.pollLast();
+
+            // Add current element index
+            maxDeque.offerLast(i);
+            minDeque.offerLast(i);
+
+            // Once we have at least k elements processed
+            if (i >= k - 1) {
+                sum += arr[maxDeque.peekFirst()] + arr[minDeque.peekFirst()];
+            }
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        int arr[] = {2, 5, -1, 7, -3, -1, -2};
+        int n = arr.length;
+        int k = 4;
+        System.out.println(SumOfKsubArray(arr, n, k)); // Output: 18
+    }
+}
