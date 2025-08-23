@@ -1,0 +1,36 @@
+class Solution {
+    // TC: O(n)
+    // SC: O(n)
+    public int evalPN(String[] tokens) {
+        Stack<Integer> stk = new Stack<>();
+        
+        // Right to Left traverse
+        for(int i = tokens.length - 1; i >= 0; i--) {
+            String token = tokens[i];
+            
+            if(isOperator(token)) {
+                int a = stk.pop();  // pehla operand
+                int b = stk.pop();  // dusra operand
+                int res = applyOperation(a, b, token);
+                stk.push(res);
+            } else {
+                stk.push(Integer.parseInt(token));
+            }
+        }
+        return stk.pop();
+    }
+    
+    private boolean isOperator(String token) {
+        return "+-*/".contains(token);
+    }
+    
+    private int applyOperation(int a, int b, String operator) {
+        switch(operator) {
+            case "+": return a + b;
+            case "-": return a - b;
+            case "*": return a * b;
+            case "/": return a / b; // assume no divide by zero
+            default: return 0;
+        }
+    }
+}
