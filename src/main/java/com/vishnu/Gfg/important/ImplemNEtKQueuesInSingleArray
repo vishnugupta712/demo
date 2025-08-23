@@ -1,0 +1,82 @@
+//TC O(1)
+//SC O(n+2k)
+class KQueues {
+    int[] arr;      // store actual elements
+    int[] front;    // front of each queue
+    int[] rear;     // rear of each queue
+    int[] next;     // next free slot OR next element link
+    int n, k;
+    int free;       // beginning index of free list
+
+    // Constructor
+    KQueues(int k, int n) {
+        this.k = k;
+        this.n = n;
+        arr = new int[n];
+        front = new int[k];
+        rear = new int[k];
+        next = new int[n];
+
+        // Initialize all queues as empty
+        for (int i = 0; i < k; i++) {
+            front[i] = -1;
+            rear[i] = -1;
+        }
+
+        // Initialize free list
+        free = 0;
+        for (int i = 0; i < n - 1; i++)
+            next[i] = i + 1;
+        next[n - 1] = -1; // end of free list
+    }
+
+    // Check if array is full
+    boolean isFull() {
+        return free == -1;
+    }
+
+    // Check if a queue is empty
+    boolean isEmpty(int qn) {
+        return front[qn] == -1;
+    }
+
+    // Enqueue x into queue number qn
+    void enqueue(int x, int qn) {
+        if (isFull()) {
+            System.out.println("Queue Overflow");
+            return;
+        }
+
+        int i = free;        // get free index
+        free = next[i];      // update free pointer
+
+        if (isEmpty(qn)) {
+            front[qn] = i;   // if queue empty, front = i
+        } else {
+            next[rear[qn]] = i; // link new element to the old rear
+        }
+
+        next[i] = -1;        // last element has no next
+        rear[qn] = i;        // update rear
+        arr[i] = x;          // store element
+    }
+
+    // Dequeue from queue number qn
+    int dequeue(int qn) {
+        if (isEmpty(qn)) {
+            System.out.println("Queue Underflow");
+            return -1;
+        }
+
+        int i = front[qn];      // index of front element
+        front[qn] = next[i];    // move front to next element
+
+        if (front[qn] == -1)    // if queue becomes empty
+            rear[qn] = -1;
+
+        next[i] = free;         // put this slot back to free list
+        free = i;
+
+        return arr[i];
+    }
+}
