@@ -1,0 +1,30 @@
+// Java program to find index of first
+// occurrence of x when array is sorted.
+//TC O(n)
+//SC O(n)
+public class GFG {
+
+    static int findFirst(int arr[], int n, int x)
+    {
+        int count = 0;
+        boolean isX = false;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == x) {
+                isX = true;
+            }
+            else if (arr[i] < x) {
+                count++;
+            }
+        }
+        return (isX == false) ? -1 : count;
+    }
+
+    // Driver main
+    public static void main(String[] args)
+    {
+        int x = 20, arr[] = { 10, 30, 20, 50, 20 };
+        int n = arr.length;
+        System.out.println(findFirst(arr, n, x));
+    }
+}
+/*This code is contributed by PrinciRaj1992*/
