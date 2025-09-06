@@ -1,0 +1,21 @@
+int countNum(vector<int> &A, int k) {
+    sort(A.begin(), A.end()); // sort first
+    int n = A.size();
+    int left = 0, right = n - 1;
+    long long count = 0;
+
+    while (left < right) { // strictly < to avoid squares
+        long long area = 1LL * A[left] * A[right];
+        if (area < k) {
+            // all pairs (A[left], A[x]) for x in [left+1 .. right] are valid
+            count += (right - left);
+//Agar Rectangle ke saath sqaure bhi included h like A[i] Ko 2 baar le skte h to
+//count  = count + 2(right-left) + 1; because all pairs (A[left], A[x]) for x in [left+1 .. right] ,, (A[x], A[left]) for x in [left+1 .. right], (A[x], A[x]) for x in [left+1 .. right]are valid, 
+            left++;
+        } else {
+            right--;
+        }
+    }
+
+    return count;
+}
