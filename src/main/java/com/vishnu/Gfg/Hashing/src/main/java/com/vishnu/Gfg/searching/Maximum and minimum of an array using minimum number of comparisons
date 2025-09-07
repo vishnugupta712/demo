@@ -1,0 +1,89 @@
+class Solution {
+//TC O(n) but less comparison
+//Normally 2*(n-1) comparisons hote h
+//But is approach se 
+//(1)Agar n is even : 3n/2 - 2
+//Derivation: Pehle 2 elements ko compare karke min & max set kar liya → 1 comparison
+
+Remaining = n-2 elements
+
+Unko pairs me lo: (n-2)/2 pairs
+
+Per pair 3 comparisons
+
+Total comparisons =1 (initial two) + 3*(n-2)/2  
+= 1 + (3n - 6)/2  
+= (3n - 4)/2  
+= 3n/2 - 2
+
+//(2) Agar n is odd : 3*(n-1)/2  
+//Derivation: Pehle element ko min & max banalo → 0 comparison
+
+Remaining = n-1 elements
+
+Unko pairs me lo: (n-1)/2 pairs
+
+Per pair 3 comparisons
+
+Total =3*(n-1)/2 
+
+//SC O(1)
+    static class MinMax {
+        int min;
+        int max;
+        MinMax(int min, int max) {
+            this.min = min;
+            this.max = max;
+        }
+    }
+
+    public static MinMax getMinMax(int[] arr) {
+        int n = arr.length;
+        int i;
+        int min, max;
+
+        // Step 1: Initialize
+        if (n % 2 == 0) {
+            // even number of elements
+            if (arr[0] < arr[1]) {
+                min = arr[0];
+                max = arr[1];
+            } else {
+                min = arr[1];
+                max = arr[0];
+            }
+            i = 2; // starting index for loop
+        } else {
+            // odd number of elements
+            min = max = arr[0];
+            i = 1; // starting index for loop
+        }
+
+        // Step 2: Process pairs
+        while (i < n - 1) {
+            int localMin, localMax;
+            if (arr[i] < arr[i + 1]) {
+                localMin = arr[i];
+                localMax = arr[i + 1];
+            } else {
+                localMin = arr[i + 1];
+                localMax = arr[i];
+            }
+
+            // update global min and max
+            if (localMin < min) min = localMin;
+            if (localMax > max) max = localMax;
+
+            i += 2; // move to next pair
+        }
+
+        return new MinMax(min, max);
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {3, 5, 4, 1, 9};
+        MinMax ans = getMinMax(arr);
+        System.out.println("Minimum element is: " + ans.min);
+        System.out.println("Maximum element is: " + ans.max);
+    }
+}
