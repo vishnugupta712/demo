@@ -1,0 +1,78 @@
+/* IMPORTANT: Multiple classes and nested static classes are supported */
+
+/*
+ * uncomment this if you want to read input.
+//imports for BufferedReader
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+//import for Scanner and other utility classes
+import java.util.*;
+*/
+
+// Warning: Printing unwanted or ill-formatted data to output will cause the test cases to fail
+import java.util.*;
+class TestClass {
+//TC O(n log n + q log n)
+//SC O(1)
+    public static void main(String args[] ) throws Exception {
+        /* Sample code to perform I/O:
+         * Use either of these methods for input
+
+        //BufferedReader
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String name = br.readLine();                // Reading input from STDIN
+        System.out.println("Hi, " + name + ".");    // Writing output to STDOUT
+
+        //Scanner
+        Scanner s = new Scanner(System.in);
+        String name = s.nextLine();                 // Reading input from STDIN
+        System.out.println("Hi, " + name + ".");    // Writing output to STDOUT
+
+        */
+
+        // Write your code here
+       Scanner in = new Scanner(System.in);
+        int n = in.nextInt();                   // Number of soldiers
+        int[] soldiers = new int[n];
+        for (int i = 0; i < n; i++) {
+            soldiers[i] = in.nextInt();         // Read powers
+        }
+        Arrays.sort(soldiers);                  // Step 1: sort
+
+        // Build prefix sums
+        long[] prefix = new long[n];
+        prefix[0] = soldiers[0];
+        for (int i = 1; i < n; i++) {
+            prefix[i] = prefix[i - 1] + soldiers[i];
+        }
+
+        int q = in.nextInt();                   // Number of rounds
+        while (q-- > 0) {
+            int m = in.nextInt();               // Bishu's power this round
+            // Step 2: find how many he can kill using binary search
+            int count = upperBound(soldiers, m);
+            if (count == 0) {
+                System.out.println("0 0");  
+            } else {
+                long sum = prefix[count - 1];  // sum of first 'count' soldiers
+                System.out.println(count + " " + sum);
+            }
+        }
+        in.close();
+    }
+
+    static int upperBound(int[] arr, int key) {
+        int low = 0, high = arr.length - 1, pos = 0;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (arr[mid] <= key) {
+                pos = mid + 1;   // can kill up to mid inclusive
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return pos;
+    }
+}
