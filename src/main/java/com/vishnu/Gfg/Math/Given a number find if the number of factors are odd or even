@@ -1,0 +1,14 @@
+class Solution {
+//TC O(1)
+//SC o(1)
+    public static String factorsOddOrEven(int n) {
+        int sqrt = (int)Math.sqrt(n);
+        if (sqrt * sqrt == n) return "odd";  // perfect square
+        else return "even";                  // not perfect square
+    }
+
+    public static void main(String[] args) {
+        System.out.println(factorsOddOrEven(12)); // even
+        System.out.println(factorsOddOrEven(16)); // odd
+    }
+}
