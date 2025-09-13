@@ -1,0 +1,25 @@
+class Solution {
+    public int isSubsequenceGCDOne(int[] arr) {
+        int n = arr.length;
+        int result = arr[0];
+        
+        // Step 1: pura array ka GCD
+        for (int i = 1; i < n; i++) {
+            result = gcd(result, arr[i]);
+            if (result == 1) return 1; // early exit, subsequence exist
+        }
+        
+        // Step 2: check final result
+        return (result == 1) ? 1 : -1;
+    }
+    
+    // Euclid's algorithm
+    private int gcd(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+}
