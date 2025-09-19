@@ -1,0 +1,24 @@
+class Solution {
+//TC O(n^2)
+//SC O(1)
+    static int matrixSum(int[][] matrix) {
+        int n = matrix.length; // square matrix
+        long sum = 0; // use long to avoid overflow for big n
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                long topChoices = i + 1;        // kitni rows upar choose kar sakte
+                long leftChoices = j + 1;       // kitne columns left se choose
+                long bottomChoices = n - i;     // kitne rows neeche choose
+                long rightChoices = n - j;      // kitne columns right se choose
+                
+                long totalSubmatrices = topChoices * leftChoices * bottomChoices * rightChoices;
+                
+                sum += matrix[i][j] * totalSubmatrices;
+            }
+        }
+        
+        // If return type strictly int hai:
+        return (int)sum;
+    }
+}
