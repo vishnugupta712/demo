@@ -1,0 +1,71 @@
+//Question : https://www.geeksforgeeks.org/dsa/maximum-profit-sale-wines/
+
+//TC O(n^2)
+//SC O(n^2)
+public class MaxProfitWines {
+    // dp[i][j] = maximum profit we can get from subarray wines[i..j]
+    // when it is the (some) year depending on how many sold before.
+    static int[][] dp;
+    static int[][] decision;  // 0 = sell beginning, 1 = sell end
+
+    public static int maxProfit(int[] price) {
+        int n = price.length;
+        dp = new int[n][n];
+        decision = new int[n][n];
+
+        // Initialize base cases: when i == j (only one bottle left)
+        for (int i = 0; i < n; i++) {
+            // If only one bottle left, it will be sold in year = n (because all others sold before)
+            dp[i][i] = n * price[i];
+            decision[i][i] = 0;  // doesn't matter, we choose beginning
+        }
+
+        // Now consider subarrays of length 2 to n
+        // len = j - i (difference)
+        for (int len = 1; len < n; len++) {
+            for (int i = 0; i + len < n; i++) {
+                int j = i + len;
+                // Year = how many sold before + 1
+                // Number of bottles already sold = (i) from start + (n-1-j) from end = something
+                // Simpler: year = n - (j - i)
+                int year = n - (j - i);
+
+                // Option 1: sell price[i] now, then solve for (i+1, j)
+                int sellBegin = price[i] * year + dp[i + 1][j];
+
+                // Option 2: sell price[j] now, then solve for (i, j-1)
+                int sellEnd   = price[j] * year + dp[i][j - 1];
+
+                if (sellBegin >= sellEnd) {
+                    dp[i][j] = sellBegin;
+                    decision[i][j] = 0;  // sell beginning
+                } else {
+                    dp[i][j] = sellEnd;
+                    decision[i][j] = 1;  // sell end
+                }
+            }
+        }
+
+        // (Optional) Print the sequence of decisions:
+        int i = 0, j = n - 1;
+        System.out.print("Sequence: ");
+        while (i <= j) {
+            if (decision[i][j] == 0) {
+                System.out.print("beg ");
+                i++;
+            } else {
+                System.out.print("end ");
+                j--;
+            }
+        }
+        System.out.println();
+
+        return dp[0][n - 1];
+    }
+
+    public static void main(String[] args) {
+        int[] price = {2, 4, 6, 2, 5};
+        int result = maxProfit(price);
+        System.out.println("Max Profit = " + result);
+    }
+}
