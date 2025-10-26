@@ -1,0 +1,48 @@
+Final Complexity:
+
+Precomputation: TC = O(N + log MOD), SC = O(N)
+
+Each nCr / nPk query: TC = O(1), SC = O(1) extra
+
+--------------------------------
+public class CombUtils {
+    final int MOD = 1_000_000_007;
+    final int N;           // max n to precompute
+    long[] fact;
+    long[] invFact;
+
+    public CombUtils(int N) {
+        this.N = N;
+        fact = new long[N+1];
+        invFact = new long[N+1];
+        precompute();
+    }
+
+    private void precompute() {
+        fact[0] = 1;
+        for (int i = 1; i <= N; i++) fact[i] = fact[i-1] * i % MOD;
+        invFact[N] = modPow(fact[N], MOD - 2);
+        for (int i = N; i >= 1; i--) invFact[i-1] = invFact[i] * i % MOD;
+    }
+
+    private long modPow(long a, long e) {
+        long res = 1;
+        a %= MOD;
+        while (e > 0) {
+            if ((e & 1) == 1) res = (res * a) % MOD;
+            a = (a * a) % MOD;
+            e >>= 1;
+        }
+        return res;
+    }
+
+    public int nCr(int n, int r) {
+        if (r < 0 || r > n) return 0;
+        return (int)((fact[n] * invFact[r] % MOD) * invFact[n-r] % MOD);
+    }
+
+    public int nPk(int n, int k) {
+        if (k < 0 || k > n) return 0;
+        return (int)(fact[n] * invFact[n-k] % MOD);
+    }
+}
