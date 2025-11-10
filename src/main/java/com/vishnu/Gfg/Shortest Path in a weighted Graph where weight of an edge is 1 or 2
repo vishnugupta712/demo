@@ -1,0 +1,35 @@
+//TC O(V+E)
+//SC O(V+E)
+public int shortestPathWithWeightsOneOrTwo(int n, List<int[]> edges, int s, int t) {
+    List<List<int[]>> adj = new ArrayList<>();
+    for (int i = 0; i <= n; i++) adj.add(new ArrayList<>());
+
+    for (int[] e : edges) {
+        adj.get(e[0]).add(new int[]{e[1], e[2]});
+    }
+
+    int[] dist = new int[n + 1];
+    Arrays.fill(dist, Integer.MAX_VALUE);
+    dist[s] = 0;
+
+    Deque<Integer> dq = new ArrayDeque<>();
+    dq.offerFirst(s);
+
+    while (!dq.isEmpty()) {
+        int u = dq.pollFirst();
+
+        for (int[] edge : adj.get(u)) {
+            int v = edge[0], w = edge[1];
+
+            if (dist[v] > dist[u] + w) {
+                dist[v] = dist[u] + w;
+                if (w == 1)
+                    dq.offerFirst(v);
+                else
+                    dq.offerLast(v);
+            }
+        }
+    }
+
+    return dist[t] == Integer.MAX_VALUE ? -1 : dist[t];
+}
