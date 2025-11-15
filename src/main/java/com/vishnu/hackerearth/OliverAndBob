@@ -1,3 +1,5 @@
+//tc o(n+q)
+//SC O(n)
 class TestClass {
     static List<List<Integer>> adj;
     static int[] inTime, outTime;
