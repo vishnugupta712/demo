@@ -14,6 +14,8 @@ static boolean isCyclic(int node, int parent, boolean[] visited, List<List<Integ
     return false;
 }
 
+//TC O(n+e)
+//SC O(n)
 static boolean isTree(int n, int[][] edges) {
     if (edges.length != n - 1) return false; // tree must have exactly n-1 edges
 
