@@ -1,0 +1,74 @@
+Minimum Cost of ropes
+
+Maximum possible difference of two subsets of an array
+SOLUTION:
+//TC O(n log n)
+//SC O(1)
+public int maxDifferenceTwoSubsets(int[] arr) {
+    Arrays.sort(arr);
+    
+    int n = arr.length;
+    long sumA = 0, sumB = 0;
+    
+    for (int i = 0; i < n;) {
+        // Check frequency of arr[i]
+        if (i + 1 < n && arr[i] == arr[i + 1]) {
+            // freq = 2 → one to A, one to B
+            sumA += arr[i];
+            sumB += arr[i];
+            i += 2; // skip the pair
+        } else {
+            // freq = 1
+            if (arr[i] >= 0) {
+                sumA += arr[i]; // positives to A
+            } else {
+                sumB += arr[i]; // negatives to B
+            }
+            i++;
+        }
+    }
+    
+    return (int)Math.abs(sumA - sumB);
+}
+
+Isi ka followup question h:
+QUESTION : Given an array of n-integers. Find the Maximum possible difference between two subsets of an array of size k.
+Example
+Input: arr[] = {5, 8, -1, 4} , k=2
+Output: Maximum Difference = 10
+
+SOLUTION:
+//TC O(n log k)
+//SC O(k)
+public int maxDifferencePQ(int[] arr, int k) {
+
+    // Max-heap for k smallest
+    PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> b - a);
+
+    // Min-heap for k largest
+    PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+
+    for (int num : arr) {
+
+        // k smallest using max heap
+        maxHeap.offer(num);
+        if (maxHeap.size() > k) {
+            maxHeap.poll();  // remove biggest → keep smallest k
+        }
+
+        // k largest using min heap
+        minHeap.offer(num);
+        if (minHeap.size() > k) {
+            minHeap.poll();  // remove smallest → keep largest k
+        }
+    }
+
+    // sums
+    int smallestSum = 0;
+    for (int x : maxHeap) smallestSum += x;
+
+    int largestSum = 0;
+    for (int x : minHeap) largestSum += x;
+
+    return largestSum - smallestSum;
+}
