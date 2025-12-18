@@ -72,3 +72,99 @@ public int maxDifferencePQ(int[] arr, int k) {
 
     return largestSum - smallestSum;
 }
+
+Implement a Maxheap and MinHeap using arrays and recursion.
+
+class MaxHeap {
+
+    // ---------- STEP 1 ----------
+    // Heapify function (recursive)
+    void maxHeapify(int[] arr, int n, int i) {
+
+        int largest = i;          // maan lo parent sabse bada hai
+        int left = 2*i + 1;       // left child index
+        int right = 2*i + 2;      // right child index
+
+        // ---------- STEP 2 ----------
+        // left child bada hai kya?
+        if (left < n && arr[left] > arr[largest]) {
+            largest = left;
+        }
+
+        // ---------- STEP 3 ----------
+        // right child aur bhi bada hai kya?
+        if (right < n && arr[right] > arr[largest]) {
+            largest = right;
+        }
+
+        // ---------- STEP 4 ----------
+        // agar parent sabse bada nahi nikla
+        if (largest != i) {
+            int temp = arr[i];
+            arr[i] = arr[largest];
+            arr[largest] = temp;
+
+            // ---------- STEP 5 ----------
+            // niche bhi rule toot sakta hai
+            maxHeapify(arr, n, largest);
+        }
+    }
+
+    // ---------- STEP 6 ----------
+    // Build heap from array
+    void buildMaxHeap(int[] arr) {
+        int n = arr.length;
+
+        // last non-leaf se upar jao
+        for (int i = n/2 - 1; i >= 0; i--) {
+            maxHeapify(arr, n, i);
+        }
+    }
+}
+
+class MinHeap {
+
+    // ---------- STEP 1 ----------
+    // Heapify function (recursive)
+    void minHeapify(int[] arr, int n, int i) {
+
+        int smallest = i;         // maan lo parent sabse chhota hai
+        int left = 2*i + 1;       // left child index
+        int right = 2*i + 2;      // right child index
+
+        // ---------- STEP 2 ----------
+        // left child chhota hai kya?
+        if (left < n && arr[left] < arr[smallest]) {
+            smallest = left;
+        }
+
+        // ---------- STEP 3 ----------
+        // right child aur bhi chhota hai kya?
+        if (right < n && arr[right] < arr[smallest]) {
+            smallest = right;
+        }
+
+        // ---------- STEP 4 ----------
+        // agar parent sabse chhota nahi nikla
+        if (smallest != i) {
+            int temp = arr[i];
+            arr[i] = arr[smallest];
+            arr[smallest] = temp;
+
+            // ---------- STEP 5 ----------
+            // niche bhi rule toot sakta hai
+            minHeapify(arr, n, smallest);
+        }
+    }
+
+    // ---------- STEP 6 ----------
+    // Build min heap from array
+    void buildMinHeap(int[] arr) {
+        int n = arr.length;
+
+        // last non-leaf se upar jao
+        for (int i = n/2 - 1; i >= 0; i--) {
+            minHeapify(arr, n, i);
+        }
+    }
+}
