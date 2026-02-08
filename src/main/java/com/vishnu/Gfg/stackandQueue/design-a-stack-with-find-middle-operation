@@ -1,0 +1,232 @@
+//TC O(1)
+//SC O(n)
+class SpecialStack {
+
+    class Node {
+        int data;
+        Node prev, next;
+        Node(int data) {
+            this.data = data;
+        }
+    }
+
+    private Node head;
+    private Node mid;
+    private int size;
+
+    public SpecialStack() {
+        head = null;
+        mid = null;
+        size = 0;
+    }
+
+    // push(x)
+    public void push(int x) {
+        Node node = new Node(x);
+        node.next = head;
+
+        if (head != null)
+            head.prev = node;
+
+        head = node;
+        size++;
+
+        if (size == 1)
+            mid = node;
+        else if (size % 2 != 0)
+            mid = mid.prev;
+    }
+
+    // pop()
+    public int pop() {
+        if (size == 0)
+            throw new RuntimeException("Stack empty");
+
+        int val = head.data;
+        head = head.next;
+
+        if (head != null)
+            head.prev = null;
+
+        size--;
+
+        if (size > 0 && size % 2 == 0)
+            mid = mid.next;
+
+        return val;
+    }
+
+    // findMiddle()
+    public int findMiddle() {
+        if (size == 0)
+            throw new RuntimeException("Stack empty");
+        return mid.data;
+    }
+
+    // deleteMiddle()
+    public void deleteMiddle() {
+        if (size == 0)
+            throw new RuntimeException("Stack empty");
+
+        Node m = mid;
+
+        if (m.prev != null)
+            m.prev.next = m.next;
+
+        if (m.next != null)
+            m.next.prev = m.prev;
+
+        if (size % 2 == 0)
+            mid = m.next;
+        else
+            mid = m.prev;
+
+        size--;
+    }
+}
+6️⃣ Time & Space Complexity
+Operation	Time
+push	O(1)
+pop	O(1)
+findMiddle	O(1)
+deleteMiddle	O(1)
+Space: O(n) (DLL nodes)
+
+7️⃣ Ek line me interview answer 🧠
+“Normal stack middle support nahi karta,
+isliye doubly linked list + mid pointer rakha
+aur har push/pop me mid adjust kiya”
+
+Agar chaho next:
+
+Dry run diagram
+
+Why size odd/even logic works
+
+Compare with recursion solution
+
+Bas bol 🔥
+
+
+You said:
+if (size > 0 && size % 2 == 0)
+            mid = mid.next;
+else if (size % 2 != 0)
+            mid = mid.prev;
+
+Ye sb kse socha
+
+ChatGPT said:
+Perfect question 👌
+Yahin pe sabka ratta start hota hai, so chalo isko DIMAG SE NIKALTE HAIN, rule yaad nahi karte.
+
+Main bilkul visual + common sense se samjha raha hoon.
+
+0️⃣ Ek rule pehle fix kar lete hain
+👉 Middle definition (1-based from bottom):
+
+middle = floor((size + 1) / 2)
+Ye rule hum kabhi change nahi karte.
+
+1️⃣ Pehle PUSH ka case samjho (foundation)
+Stack = TOP pe insert hota hai
+
+So DLL aisi hai:
+
+HEAD (top) → ... → BOTTOM
+Example 1: PUSH sequence
+size = 1
+[10]
+mid = 10
+PUSH 20 → size = 2
+Top → 20 10
+Bottom
+Middle index:
+
+floor((2+1)/2) = 1
+👉 Bottom se 1st = 10
+
+⚠️ mid same raha
+
+PUSH 30 → size = 3
+Top → 30 20 10
+Bottom
+Middle:
+
+floor((3+1)/2) = 2
+👉 Bottom se 2nd = 20
+
+⚠️ mid upar shift hua
+
+🧠 Observation:
+
+PUSH ke baad size odd ho → mid = mid.prev
+
+👉 Ye logic yahin se aaya
+
+if (size % 2 != 0)
+    mid = mid.prev;
+2️⃣ Ab POP ka case samjho (important)
+POP matlab:
+
+HEAD (top) element nikal gaya
+
+Example 2: POP
+Starting stack
+Top → 30 20 10
+mid = 20
+size = 3
+POP → remove 30 → size = 2
+Top → 20 10
+Middle:
+
+floor((2+1)/2) = 1
+👉 Bottom se 1st = 10
+
+⚠️ mid neeche shift hua
+
+🧠 Observation:
+
+POP ke baad size even ho → mid = mid.next
+
+👉 Code:
+
+if (size % 2 == 0)
+    mid = mid.next;
+3️⃣ Ab dono ko ek table me dekho 🧠
+Operation	Size change	Middle movement
+PUSH	odd →	mid.prev
+POP	even →	mid.next
+⚠️ Reason same hai:
+Stack ka top change hua → balance shift hua
+
+4️⃣ Isliye final logic likha gaya
+POP ke baad:
+if (size > 0 && size % 2 == 0)
+    mid = mid.next;
+PUSH ke baad:
+if (size % 2 != 0)
+    mid = mid.prev;
+5️⃣ Ek ONE-LINE intuition (interview gold)
+“Stack ke top pe change hone se elements ka balance upar-neeche hota hai,
+isliye size odd/even hote hi mid pointer shift kar dete hain.”
+
+6️⃣ Ratna band karne ka shortcut 🧠
+❌ Ye yaad mat rakho
+✅ Ye imagine karo:
+
+Top se element aaya → middle upar khiska
+Top se element gaya → middle neeche khiska
+Bas 🔥
+
+Agar chaho next:
+
+Animation style dry run
+
+Why floor((n+1)/2) chosen
+
+Edge cases
+
+Bol bhai 😄
+
+
