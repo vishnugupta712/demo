@@ -1,0 +1,43 @@
+//TC O(n)
+//SC O(k)
+public int[] sumOfMinAndMax(int[] nums, int k) {
+    if (nums == null || nums.length == 0 || k <= 0) {
+        return new int[0];
+    }
+
+    Deque<Integer> maxDQ = new LinkedList<>(); // max ke liye
+    Deque<Integer> minDQ = new LinkedList<>(); // min ke liye
+
+    int[] result = new int[nums.length - k + 1];
+
+    for (int i = 0; i < nums.length; i++) {
+
+        // 1️⃣ Window se bahar wale indices hatao
+        if (!maxDQ.isEmpty() && maxDQ.peekFirst() < i - k + 1)
+            maxDQ.pollFirst();
+
+        if (!minDQ.isEmpty() && minDQ.peekFirst() < i - k + 1)
+            minDQ.pollFirst();
+
+        // 2️⃣ Max deque (decreasing order)
+        while (!maxDQ.isEmpty() && nums[i] > nums[maxDQ.peekLast()])
+            maxDQ.pollLast();
+
+        // 3️⃣ Min deque (increasing order)
+        while (!minDQ.isEmpty() && nums[i] < nums[minDQ.peekLast()])
+            minDQ.pollLast();
+
+        // 4️⃣ Current index add
+        maxDQ.offerLast(i);
+        minDQ.offerLast(i);
+
+        // 5️⃣ Answer jab window complete ho
+        if (i >= k - 1) {
+            int max = nums[maxDQ.peekFirst()];
+            int min = nums[minDQ.peekFirst()];
+            result[i - k + 1] = max + min;
+        }
+    }
+
+    return result;
+}
