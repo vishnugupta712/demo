@@ -1,0 +1,84 @@
+import java.util.NoSuchElementException;
+import java.util.function.Function;
+
+public class MyOptional<T> {
+
+    private final T value;
+
+    private MyOptional(T value) {
+        this.value = value;
+    }
+
+    // of() → null NOT allowed
+    public static <T> MyOptional<T> of(T value) {
+        if (value == null) {
+            throw new NullPointerException("Value cannot be null");
+        }
+        return new MyOptional<>(value);
+    }
+
+    // ofNullable() → null allowed
+    public static <T> MyOptional<T> ofNullable(T value) {
+        return new MyOptional<>(value);
+    }
+
+    public boolean isPresent() {
+        return value != null;
+    }
+
+    public T get() {
+        if (value == null) {
+            throw new IllegalStateException("No value present");
+        }
+        return value;
+    }
+
+    public T orElse(T other) {
+        return value != null ? value : other;
+    }
+
+    public T orElseThrow() {
+        if (value == null) {
+            throw new NoSuchElementException("No value present");
+        }
+        return value;
+    }
+
+    public <R> MyOptional<R> map(Function<? super T, ? extends R> mapper) {
+        if (value == null) {
+            return new MyOptional<>(null);
+        }
+        return new MyOptional<>(mapper.apply(value));
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        // 1️⃣ of()
+        MyOptional<String> opt1 = MyOptional.of("Vishnu");
+
+        if (opt1.isPresent()) {
+            System.out.println("Value: " + opt1.get());
+        }
+
+        // 2️⃣ ofNullable() with null
+        MyOptional<String> opt2 = MyOptional.ofNullable(null);
+
+        System.out.println("orElse(): " + opt2.orElse("Default Name"));
+
+        // 3️⃣ map()
+        MyOptional<Integer> lengthOpt =
+                MyOptional.of("Interview").map(String::length);
+
+        System.out.println("Length: " + lengthOpt.get());
+
+        // 4️⃣ orElseThrow()
+        try {
+            opt2.orElseThrow();
+        } catch (Exception e) {
+            System.out.println("Exception: " + e.getMessage());
+        }
+    }
+}
