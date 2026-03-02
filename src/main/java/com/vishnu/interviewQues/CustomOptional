@@ -52,7 +52,7 @@ public class MyOptional<T> {
     }
 }
 
-public class Main {
+public class MainOptional {
 
     public static void main(String[] args) {
 
