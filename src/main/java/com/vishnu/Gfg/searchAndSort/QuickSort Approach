@@ -1,0 +1,94 @@
+public class QuickSortNormal {
+
+    static Random rand = new Random();
+
+    public static void quickSort(int[] arr, int low, int high) {
+        if (low >= high) return;
+
+        // Random pivot choose karo
+        int pivotIndex = low + rand.nextInt(high - low + 1);
+        swap(arr, pivotIndex, high);
+
+        int pi = partition(arr, low, high);
+
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+
+    private static int partition(int[] arr, int low, int high) {
+        int pivot = arr[high];
+        int i = low - 1;
+
+        for (int j = low; j < high; j++) {
+            if (arr[j] < pivot) {
+                i++;
+                swap(arr, i, j);
+            }
+        }
+
+        swap(arr, i + 1, high);
+        return i + 1;
+    }
+
+    private static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    // Test
+    public static void main(String[] args) {
+        int[] arr = {5, 3, 8, 4, 2, 7, 1, 10};
+        quickSort(arr, 0, arr.length - 1);
+
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+}
+
+
+public class QuickSort3Way {
+
+    public static void quickSort(int[] arr, int low, int high) {
+        if (low >= high) return;
+
+        int lt = low;        // < pivot
+        int gt = high;       // > pivot
+        int pivot = arr[low];
+        int i = low;
+
+        while (i <= gt) {
+            if (arr[i] < pivot) {
+                swap(arr, i, lt);
+                i++;
+                lt++;
+            } else if (arr[i] > pivot) {
+                swap(arr, i, gt);
+                gt--;
+            } else {
+                i++;
+            }
+        }
+
+        // Recursively sort left & right
+        quickSort(arr, low, lt - 1);
+        quickSort(arr, gt + 1, high);
+    }
+
+    private static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    // Test
+    public static void main(String[] args) {
+        int[] arr = {5, 5, 5, 3, 3, 8, 1, 1, 2};
+        quickSort(arr, 0, arr.length - 1);
+
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+}
