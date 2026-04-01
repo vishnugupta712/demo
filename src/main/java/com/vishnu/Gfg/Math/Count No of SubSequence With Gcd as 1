@@ -1,0 +1,38 @@
+//TC O(max * log(max))
+//SC O(max)
+int countSubseqGCD1(int[] arr) {
+    int max = 100000;
+
+    int[] freq = new int[max + 1];
+
+    // Step 1: frequency
+    for (int num : arr) {
+        freq[num]++;
+    }
+
+    int[] count = new int[max + 1];
+
+    // Step 2: main logic
+    for (int g = max; g >= 1; g--) {
+        int cnt = 0;
+
+        // count multiples of g
+        for (int j = g; j <= max; j += g) {
+            cnt += freq[j];
+        }
+
+        if (cnt == 0) continue;
+
+        // total subsequences
+        int total = (1 << cnt) - 1;
+
+        // subtract multiples
+        for (int j = 2 * g; j <= max; j += g) {
+            total -= count[j];
+        }
+
+        count[g] = total;
+    }
+
+    return count[1];
+}
