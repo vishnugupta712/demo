@@ -1,0 +1,30 @@
+public class SumOfAllSubmatrices {
+
+    public static long sumOfSubmatrices(int[][] mat) {
+        int n = mat.length;
+        long total = 0;
+
+        // Har cell ke contribution ko calculate karenge
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+
+                // Ye cell kitni submatrices me aayega
+                long count = (long)(i + 1) * (j + 1) * (n - i) * (n - j);
+
+                // Cell ki value * uska contribution count
+                total += (long) mat[i][j] * count;
+            }
+        }
+
+        return total;
+    }
+
+    public static void main(String[] args) {
+        int[][] mat = {
+            {1, 1},
+            {1, 1}
+        };
+
+        System.out.println(sumOfSubmatrices(mat)); // Output: 16
+    }
+}
