@@ -9,6 +9,8 @@ class Pair {
         this.a = a;
         this.b = b;
     }
+//TC O(n^2)
+//SC O(n)
     static int maxChainLength(Pair arr[], int n)
     {
       Arrays.sort(pairs, (p,q)-> Integer.compare(p.a,q.a));
@@ -27,6 +29,8 @@ class Pair {
     }
 
 //GREEDY Approach
+//TC O(n log n)
+//SC O(1)
 static int maxChainLengthGreedy(Pair arr[], int n)
     {
         Arrays.sort(arr, (p1, p2) -> Integer.compare(p1.b, p2.b));
